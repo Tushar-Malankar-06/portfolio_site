@@ -1,5 +1,5 @@
 /* =================================================================== 
- * Luther Main Stylesheet
+ * Tushar Main Stylesheet
  * Template Ver. 1.0.0
  * 02-15-2021
  * ------------------------------------------------------------------
@@ -4808,4 +4808,34 @@ body {
 
 .contact-info a:hover {
     color: #d4af37 !important;
+}
+
+.contact-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding: 2rem;
+    height: 60px;
+    text-transform: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    background: #1a1a1a;
+    color: #d4af37;
+    border: 2px solid #d4af37;
+}
+
+.contact-btn:hover {
+    background: #d4af37;
+    color: #1a1a1a;
+    transform: translateY(-2px);
+}
+
+@media screen and (max-width: 600px) {
+    .contact-btn {
+        font-size: 1.8rem;
+        padding: 1.5rem;
+        height: 50px;
+    }
 }
