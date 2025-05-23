@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html class="no-js ss-preload" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Luther</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Add particles.js for dynamic background -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Add AOS library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Add Typed.js for text animation -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <style>
+        /* Add custom theme colors and styles */
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #3498db;
+            --dark-bg: #1a1a1a;
+            --light-text: #ffffff;
+            --gold-accent: #d4af37;
+        }
+        
+        body {
+            background: var(--dark-bg);
+            color: var(--light-text);
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-tag {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+            color: white;
+        }
+
+        /* Button Styles with Gold Borders */
+        .btn {
+            border: 2px solid var(--gold-accent) !important;
+            color: var(--gold-accent) !important;
+            background: transparent !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .btn:hover {
+            background: var(--gold-accent) !important;
+            color: var(--dark-bg) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Styles */
+        .main-nav a {
+            color: var(--dark-text) !important;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent-purple) !important;
+        }
+
+        /* Section Headers */
+        .text-pretitle {
+            color: var(--accent-gold) !important;
+        }
+
+        .with-line::after {
+            background-color: var(--accent-gold) !important;
+        }
+
+        /* Portfolio Items */
+        .folio-list__item-link {
+            border: 1px solid var(--accent-gold);
+            transition: all 0.3s ease;
+            background: var(--light-bg);
+        }
+
+        .folio-list__item-link:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-5px);
+        }
+
+        .folio-list__item-cat {
+            color: var(--accent-gold) !important;
+        }
+
+        .folio-list__item-title {
+            color: var(--dark-text) !important;
+        }
+
+        /* Modal Styles */
+        .modal-popup {
+            background: var(--light-bg) !important;
+            border: 2px solid var(--accent-gold);
+            color: var(--dark-text);
+        }
+
+        .modal-popup__desc h5 {
+            color: var(--accent-gold) !important;
+        }
+
+        .modal-popup__cat li {
+            background: var(--accent-purple) !important;
+            color: var(--light-bg) !important;
+        }
+
+        /* Timeline Styles */
+        .timeline__bullet {
+            background-color: var(--accent-gold) !important;
+        }
+
+        .timeline__header {
+            border-left: 2px solid var(--accent-gold) !important;
+            color: var(--dark-text);
+        }
+
+        /* Social Links */
+        .intro-social a {
+            color: var(--dark-text) !important;
+            transition: color 0.3s ease;
+        }
+
+        .intro-social a:hover {
+            color: var(--accent-purple) !important;
+        }
+
+        /* Contact Section */
+        .contact-link {
+            color: var(--dark-text) !important;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent-purple) !important;
+        }
+
+        /* Contact Button Specific Style */
+        .contact-btn {
+            border: 2px solid var(--gold-accent) !important;
+            color: var(--gold-accent) !important;
+            background: transparent !important;
+        }
+
+        .contact-btn:hover {
+            background: var(--gold-accent) !important;
+            color: var(--dark-bg) !important;
+        }
+
+        /* Expertise Cards */
+        .expertise-card {
+            background: var(--light-bg);
+            border: 1px solid var(--accent-gold);
+            transition: all 0.3s ease;
+            color: var(--dark-text);
+        }
+
+        .expertise-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-5px);
+        }
+
+        .expertise-icon {
+            color: var(--accent-gold);
+        }
+
+        /* Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-purple);
+        }
+
+        /* Additional Text Colors */
+        h1, h2, h3, h4, h5, h6, p {
+            color: var(--dark-text);
+        }
+
+        .timeline__title, .timeline__meta, .timeline__timeframe {
+            color: var(--dark-text) !important;
+        }
+
+        .timeline__desc p {
+            color: var(--dark-text);
+        }
+    </style>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
+</head>
+
+<body id="top">
+
+    <!-- Add particles.js container -->
+    <div id="particles-js"></div>
+
+    <!-- # preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+        </div>
+    </div>
+
+
+    <!-- # page wrap
+    ================================================== -->
+    <div class="s-pagewrap">
+
+        <div class="circles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+
+        <!-- ## site header 
+        ================================================== -->
+        <header class="s-header">
+
+            <div class="header-mobile">
+                <span class="mobile-home-link"><a href="index.html">Tushar.</a></span>
+                <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
+            </div>
+
+            <div class="row wide main-nav-wrap">
+                <nav class="column lg-12 main-nav">
+                    <ul>
+                        <li><a href="index.html" class="home-link">Tushar.</a></li>
+                        <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
+                        <li><a href="#about" class="smoothscroll">About</a></li>
+                        <li><a href="#works" class="smoothscroll">Works</a></li>
+                        <li><a href="#contact" class="smoothscroll">Say Hello</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </header> <!-- end s-header -->
+
+
+        <!-- ## main content
+        ==================================================- -->
+        <main class="s-content">
+
+
+            <!-- ### intro
+            ================================================== -->
+            <section id="intro" class="s-intro target-section">
+
+                <div class="row intro-content wide">
+
+                    <div class="column">
+                        <div class="text-pretitle with-line">
+                            Hello World
+                        </div>
+
+                        <h1 class="text-huge-title text-gradient">
+                            I am <span id="typed-text"></span>
+                        </h1>
+                    </div>
+
+                    <ul class="intro-social">
+                        <li><a href="https://github.com/Tushar-Malankar-06">Github</a></li>
+                        <li><a href="www.linkedin.com/in/tushar-malankar">Linkldin</a></li>
+                        <li><a href="https://public.tableau.com/app/profile/tushar.malankar/vizzes">Tableau</a></li>
+                    </ul>
+
+                </div> <!-- end intro content -->
+
+                <a href="#about" class="intro-scrolldown smoothscroll">
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z"/></svg>
+                </a>
+
+            </section> <!-- end s-intro -->
+
+
+            <!-- ### about
+            ================================================== -->
+            <section id="about" class="s-about target-section">
+
+
+                <div class="row about-info wide" data-animate-block>
+
+                    <div class="column lg-6 md-12 about-info__pic-block" data-aos="fade-right">
+                        <img src="images/about-photo.jpg" 
+                             srcset="images/about-photo.jpg 1x, images/about-photo@2x.jpg 2x" alt="" class="about-info__pic" data-animate-el>
+                    </div>
+
+                    <div class="column lg-6 md-12" data-aos="fade-left">
+                        <div class="about-info__text" >
+
+                            <h2 class="text-pretitle with-line" data-animate-el>
+                                About
+                            </h2>
+                            <p class="attention-getter" data-animate-el>
+                                I turn raw data into real-world impact. With a deep passion for analytics and technology, I specialize in designing scalable data solutions and extracting actionable insights that drive smarter business decisions. From building Snowflake data warehouses to deploying ML models on Databricks, my work sits at the intersection of engineering precision and business strategy. Whether it's predicting revenue uplift or optimizing supply chain flows, I bring energy, creativity, and a relentless curiosity to every challenge I tackle.
+                            </p>
+                            <a href="https://drive.google.com/file/d/12FkLfJv090SJynD4JwmviqwzwY2hwvLQ/view?usp=sharing" class="btn btn--medium" style="background: #1a1a1a; color: #d4af37; border: 2px solid #d4af37; padding: 1.5rem 3rem; font-size: 1.8rem; border-radius: 8px; transition: all 0.3s ease; text-transform: none; font-weight: 700; letter-spacing: normal; position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-width: 250px; text-align: center;">Download CV</a>
+
+                        </div>
+                    </div>
+                </div> <!-- about-info -->
+
+
+                <!-- ### about expertise
+                ================================================== -->
+                <div class="row about-expertise" data-animate-block>
+                    <div class="column lg-12">
+                        <h2 class="text-pretitle" data-animate-el>Areas of Expertise</h2>
+                        
+                        <!-- Expertise Carousel -->
+                        <div class="expertise-carousel swiper-container">
+                            <div class="swiper-wrapper">
+                                <!-- Data Engineering -->
+                                <div class="swiper-slide">
+                                    <div class="expertise-card">
+                                        <div class="expertise-icon">
+                                            <i class="fas fa-database"></i>
+                                        </div>
+                                        <h3>Data Engineering</h3>
+                                        <ul class="expertise-list">
+                                            <li>Data Modeling & Warehousing</li>
+                                            <li>ETL Pipeline Development</li>
+                                            <li>Big Data Processing</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Analytics -->
+                                <div class="swiper-slide">
+                                    <div class="expertise-card">
+                                        <div class="expertise-icon">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <h3>Analytics</h3>
+                                        <ul class="expertise-list">
+                                            <li>Business Intelligence</li>
+                                            <li>Statistical Analysis</li>
+                                            <li>Data Visualization</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Machine Learning -->
+                                <div class="swiper-slide">
+                                    <div class="expertise-card">
+                                        <div class="expertise-icon">
+                                            <i class="fas fa-brain"></i>
+                                        </div>
+                                        <h3>Machine Learning</h3>
+                                        <ul class="expertise-list">
+                                            <li>Predictive Modeling</li>
+                                            <li>NLP & Text Analytics</li>
+                                            <li>Model Deployment</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Cloud Technologies -->
+                                <div class="swiper-slide">
+                                    <div class="expertise-card">
+                                        <div class="expertise-icon">
+                                            <i class="fas fa-cloud"></i>
+                                        </div>
+                                        <h3>Cloud Technologies</h3>
+                                        <ul class="expertise-list">
+                                            <li>AWS & Azure Services</li>
+                                            <li>Cloud Data Solutions</li>
+                                            <li>Infrastructure as Code</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certifications Button -->
+                        <div class="text-center" style="margin-top: 3rem;">
+                            <a href="#certifications" class="btn btn--medium" style="background: #1a1a1a; color: #d4af37; border: 2px solid #d4af37; padding: 1.5rem 3rem; font-size: 1.8rem; border-radius: 8px; transition: all 0.3s ease; text-transform: none; font-weight: 700; letter-spacing: normal; position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-width: 250px; text-align: center;">View My Certifications</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row about-timelines" data-animate-block>
+
+                    <div class="column lg-6 tab-12">
+
+                        <h2 class="text-pretitle" data-animate-el>
+                            Experience
+                        </h2>
+
+                        <div class="timeline" data-animate-el>
+
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Grain Genetics Company</h3>
+                                    <h5 class="timeline__meta">Data Analytics Intern</h5>
+                                    <p class="timeline__timeframe">Jan 2025 - April 2025</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    <p>Responsible for building an enterprise-grade data warehouse using Snowflake, leveraging Kimball dimensional modeling and star schema design. I developed modular data marts with centralized business logic to support self-service analytics, and optimized Power BI dashboards for high-performance querying. My work also involved implementing robust governance through tag-based data masking and monitoring tools like ACCESS_HISTORY.</p>
+                                </div>
+                            </div>
+    
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Modison Private Limited</h4>
+                                    <h5 class="timeline__meta">Business Intelligence Intern</h5>
+                                    <p class="timeline__timeframe">June 2024 - July 2024</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    <p>Conducted deep analysis of procurement and material spend data to uncover inefficiencies and recommend cost-saving strategies. Collaborating closely with supply chain and manufacturing teams, I aligned data insights with operational goals, helping the organization optimize material productivity and streamline workflows.</p>
+                                </div>
+                            </div>
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Larsen and Tuobro</h4>
+                                    <h5 class="timeline__meta">Software Development Intern</h5>
+                                    <p class="timeline__timeframe">June 2023 - July 2023</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    <p>Led the development of an Android-based Attendance Management System using Flutter and Dart. The solution featured facial recognition and geofencing, and supported daily check-ins for 25 employees. I introduced a quick-attendance feature that reduced processing time by 75%, trained staff on system usage, and worked alongside a junior intern to deliver executive dashboards in Power BI.</p>
+                                </div>
+                            </div>
+    
+                        </div> <!-- end timeline -->
+
+                    </div> <!-- end column -->
+
+                    <div class="column lg-6 tab-12">
+
+                        <h2 class="text-pretitle" data-animate-el>
+                            Education
+                        </h2>
+
+                        <div class="timeline" data-animate-el>
+
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Purdue University</h3>
+                                    <h5 class="timeline__meta">Master of Science in Business Analytics and Information Management</h5>
+                                    <p class="timeline__timeframe">August 2025</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    <p></p>
+                                </div>
+                            </div>
+    
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Thadomal Shahani Engineering College,Mumbai University</h4>
+                                    <h5 class="timeline__meta">Bachelors of Engineering in Artificial Intelligence and Data Science </h5>
+                                    <p class="timeline__timeframe">August 2024</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    <p></p>
+                                </div>
+                            </div>
+    
+                        </div> <!-- end timeline -->
+                        
+                    </div> <!-- end column -->
+
+
+                </div> <!-- end about-timelines -->
+
+            </section> <!-- end s-about -->
+
+
+            <!-- ### works
+================================================== -->
+<section id="works" class="s-works target-section">
+    <div class="row works-portfolio">
+        <div class="column lg-12" data-animate-block>
+            <h2 class="text-pretitle" data-animate-el>
+                Recent Works
+            </h2>
+            <p class="h1" data-animate-el>
+                Here are some of my favorite projects I have done lately. Feel free to check them out.
+            </p>
+            <ul class="folio-list row block-lg-one-half block-stack-on-1000">
+                <!-- Project 1 -->
+                <li class="folio-list__item column" data-animate-el>
+                    <a class="folio-list__item-link" href="#modal-01">
+                        <div class="folio-list__item-pic">
+                            <img src="images\portfolio\gallery\machine_learning.png" srcset="iimages\portfolio\gallery\machine_learning.png 1x, images\portfolio\gallery\machine_learning.png 2x" alt="">
+                        </div>
+                        <div class="folio-list__item-text">
+                            <div class="folio-list__item-cat">Machine Learning</div>
+                            <div class="folio-list__item-title">Disaster Tweet Classification</div>
+                        </div>
+                    </a>
+                    <a class="folio-list__proj-link" href="#" title="project link">
+                        <svg width="15" height="15" viewBox="0 0 15 15"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355Z"/></svg>
+                    </a>
+                </li>
+                <!-- Project 2 -->
+                <li class="folio-list__item column" data-animate-el>
+                    <a class="folio-list__item-link" href="#modal-02">
+                        <div class="folio-list__item-pic">
+                            <img src="images\portfolio\gallery\credit.jpg" srcset="images\portfolio\gallery\credit.jpg 1x, images\portfolio\gallery\credit.jpg 2x" alt="">
+                        </div>
+                        <div class="folio-list__item-text">
+                            <div class="folio-list__item-cat">BigData and MLOps</div>
+                            <div class="folio-list__item-title">Improving Loan Risk Assessment and Approval Process.</div>
+                        </div>
+                    </a>
+                    <a class="folio-list__proj-link" href="#" title="project link">
+                        <svg width="15" height="15" viewBox="0 0 15 15"><path d="M8.14645 3.14645..."/></svg>
+                    </a>
+                </li>
+                <!-- Project 3 -->
+                <li class="folio-list__item column" data-animate-el>
+                    <a class="folio-list__item-link" href="#modal-03">
+                        <div class="folio-list__item-pic">
+                            <img src="images/portfolio/gallery/cfa.jpg" srcset="images/portfolio/gallery/cfa.jpg 1x,images/portfolio/gallery/cfa.jpg 2x" alt="">
+                        </div>
+                        <div class="folio-list__item-text">
+                            <div class="folio-list__item-cat">Computing and Analytics</div>
+                            <div class="folio-list__item-title">Diabetic Hospital Readmission Analysis.</div>
+                        </div>
+                    </a>
+                    <a class="folio-list__proj-link" href="#" title="project link">
+                        <svg width="15" height="15" viewBox="0 0 15 15"><path d="M8.14645 3.14645..."/></svg>
+                    </a>
+                </li>
+                <!-- Project 4 -->
+                <li class="folio-list__item column" data-animate-el>
+                    <a class="folio-list__item-link" href="#modal-04">
+                        <div class="folio-list__item-pic">
+                            <img src="images/portfolio/skaterboy.jpg" srcset="images/portfolio/skaterboy.jpg 1x, images/portfolio/skaterboy@2x.jpg 2x" alt="">
+                        </div>
+                        <div class="folio-list__item-text">
+                            <div class="folio-list__item-cat">Web Scraping</div>
+                            <div class="folio-list__item-title">Gap Case Study Analytics.</div>
+                        </div>
+                    </a>
+                    <a class="folio-list__proj-link" href="#" title="project link">
+                        <svg width="15" height="15" viewBox="0 0 15 15"><path d="M8.14645 3.14645..."/></svg>
+                    </a>
+                </li>
+                <!-- Project 5 -->
+                <li class="folio-list__item column" data-animate-el>
+                    <a class="folio-list__item-link" href="#modal-05">
+                        <div class="folio-list__item-pic">
+                            <img src="images/portfolio/sanddunes.jpg" srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x" alt="">
+                        </div>
+                        <div class="folio-list__item-text">
+                            <div class="folio-list__item-cat">Business Intelligence</div>
+                            <div class="folio-list__item-title">Electric Vehicle Infrastructure Analysis.</div>
+                        </div>
+                    </a>
+                    <a class="folio-list__proj-link" href="#" title="project link">
+                        <svg width="15" height="15" viewBox="0 0 15 15"><path d="M8.14645 3.14645..."/></svg>
+                    </a>
+                </li>
+                <!-- Project 6 -->
+                <li class="folio-list__item column" data-animate-el>
+                    <a class="folio-list__item-link" href="#modal-06">
+                        <div class="folio-list__item-pic">
+                            <img src="images/portfolio/minimalismo.jpg" srcset="images/portfolio/minimalismo.jpg 1x, images/portfolio/minimalismo@2x.jpg 2x" alt="">
+                        </div>
+                        <div class="folio-list__item-text">
+                            <div class="folio-list__item-cat">Database Management</div>
+                            <div class="folio-list__item-title">ALDI Store Expansion Analysis.</div>
+                        </div>
+                    </a>
+                    <a class="folio-list__proj-link" href="#" title="project link">
+                        <svg width="15" height="15" viewBox="0 0 15 15"><path d="M8.14645 3.14645..."/></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Modal Descriptions -->
+        <div id="modal-01" hidden>
+            <div class="modal-popup">
+                <img src="images/portfolio/gallery/g-fuji.jpg" alt="">
+                <div class="modal-popup__desc">
+                    <h5>Disaster Tweet Classification</h5>
+                    <p>Used NLP to classify disaster-related tweets in real-time. The project enabled efficient emergency response prioritization and information filtering.</p>
+                    <ul class="modal-popup__cat">
+                        <li>Machine Learning</li>
+                    </ul>
+                </div>
+                <a href="#" class="modal-popup__details">Project link</a>
+            </div>
+        </div>
+
+        <div id="modal-02" hidden>
+            <div class="modal-popup">
+                <img src="images/portfolio/gallery/g-lamp.jpg" alt="">
+                <div class="modal-popup__desc">
+                    <h5>Improving Loan Risk Assessment and Approval</h5>
+                    <p>Used big data and MLOps techniques to streamline loan approvals and minimize defaults. Built models for predicting default risk, monthly payments, and borrower segmentation using Spark and MLflow.</p>
+                    <ul class="modal-popup__cat">
+                        <li>Big Data</li>
+                        <li>MLOps</li>
+                    </ul>
+                </div>
+                <a href="#" class="modal-popup__details">Project link</a>
+            </div>
+        </div>
+
+        <div id="modal-03" hidden>
+            <div class="modal-popup">
+                <img src="images/portfolio/gallery/g-rucksack.jpg" alt="">
+                <div class="modal-popup__desc">
+                    <h5>Diabetic Readmission Risk Analysis</h5>
+                    <p>Analyzed diabetic patient records using graph algorithms, logistic regression, and linear programming to identify high-risk pathways and optimize follow-up care strategies.</p>
+                    <ul class="modal-popup__cat">
+                        <li>Healthcare Analytics</li>
+                    </ul>
+                </div>
+                <a href="#" class="modal-popup__details">Project link</a>
+            </div>
+        </div>
+
+        <div id="modal-04" hidden>
+            <div class="modal-popup">
+                <img src="images/portfolio/gallery/g-skaterboy.jpg" alt="">
+                <div class="modal-popup__desc">
+                    <h5>GAP: Predicting Consumer Trends with Web Data</h5>
+                    <p>Combined sentiment analysis, competitor scraping, and Reddit feedback to evaluate GAP's data-driven creative strategy in modern retail.</p>
+                    <ul class="modal-popup__cat">
+                        <li>Web Data Analytics</li>
+                    </ul>
+                </div>
+                <a href="#" class="modal-popup__details">Project link</a>
+            </div>
+        </div>
+
+        <div id="modal-05" hidden>
+            <div class="modal-popup">
+                <img src="images/portfolio/gallery/g-sanddunes.jpg" alt="">
+                <div class="modal-popup__desc">
+                    <h5>Electric Vehicle Infrastructure Analysis</h5>
+                    <p>Analyzed EV registration, charging station density, and traffic data to recommend targeted infrastructure investment across Washington State counties.</p>
+                    <ul class="modal-popup__cat">
+                        <li>Business Intelligence</li>
+                    </ul>
+                </div>
+                <a href="#" class="modal-popup__details">Project link</a>
+            </div>
+        </div>
+
+        <div id="modal-06" hidden>
+            <div class="modal-popup">
+                <img src="images/portfolio/gallery/g-minimalismo.jpg" alt="">
+                <div class="modal-popup__desc">
+                    <h5>ALDI Expansion Strategy in Indiana</h5>
+                    <p>Analyzed foot traffic, income levels, and grocery density across Indiana to identify counties with highest potential for ALDI expansion.</p>
+                    <ul class="modal-popup__cat">
+                        <li>Geospatial Analytics</li>
+                    </ul>
+                </div>
+                <a href="#" class="modal-popup__details">Project link</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <div class="row testimonials">
+    <div class="column lg-12" data-animate-block>
+        <div class="swiper-container testimonial-slider" data-animate-el>
+            <div class="swiper-wrapper">
+                <div class="testimonial-slider__slide swiper-slide">
+                    <div class="testimonial-slider__author">
+                        <img src="images/avatars/user-02.jpg" alt="Author image" class="testimonial-slider__avatar">
+                        <cite class="testimonial-slider__cite">
+                            <strong>Tim Cook</strong>
+                            <span>CEO, Apple</span>
+                        </cite>
+                    </div>
+                    <p>
+                    Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem. 
+                    Explicabo a quaerat sint autem dolore ducimus ut consequatur neque.  Nisi dolores quaerat fuga rem nihil nostrum.
+                    Laudantium quia consequatur molestias delectus culpa.
+                    </p>
+                </div>
+                <div class="testimonial-slider__slide swiper-slide">
+                    <div class="testimonial-slider__author">
+                        <img src="images/avatars/user-03.jpg" alt="Author image" class="testimonial-slider__avatar">
+                        <cite class="testimonial-slider__cite">
+                            <strong>Sundar Pichai</strong>
+                            <span>CEO, Google</span>
+                        </cite>
+                    </div>
+                    <p>
+                    Excepturi nam cupiditate culpa doloremque deleniti repellat. Veniam quos repellat voluptas animi adipisci.
+                    Nisi eaque consequatur. Voluptatem dignissimos ut ducimus accusantium perspiciatis.
+                    Quasi voluptas eius distinctio. Atque eos maxime.
+                    </p>
+                </div>
+                <div class="testimonial-slider__slide swiper-slide">
+                    <div class="testimonial-slider__author">
+                        <img src="images/avatars/user-01.jpg" alt="Author image" class="testimonial-slider__avatar">
+                        <cite class="testimonial-slider__cite">
+                            <strong>Satya Nadella</strong>
+                            <span>CEO, Microsoft</span>
+                        </cite>
+                    </div>
+                    <p>
+                    Repellat dignissimos libero. Qui sed at corrupti expedita voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.  
+                    Autem eaque officia cum exercitationem sunt voluptatum accusamus. Quasi voluptas eius distinctio.
+                    Voluptatem dignissimos ut.
+                    </p>
+                </div>
+                <div class="testimonial-slider__slide swiper-slide">
+                    <div class="testimonial-slider__author">
+                        <img src="images/avatars/user-06.jpg" alt="Author image" class="testimonial-slider__avatar">
+                        <cite class="testimonial-slider__cite">
+                            <strong>Jeff Bezos</strong>
+                            <span>CEO, Amazon</span>
+                        </cite>
+                    </div>
+                    <p>
+                    Nunc interdum lacus sit amet orci. Vestibulum dapibus nunc ac augue. Fusce vel dui. In ac felis 
+                    quis tortor malesuada pretium. Curabitur vestibulum aliquam leo. Qui sed at corrupti expedita voluptas odit. 
+                    Nihil ea quia nesciunt. Ducimus aut sed ipsam.
+                    </p>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div> -->
+
+
+
+            <!-- ### contact
+            ================================================== -->
+            <section id="contact" class="s-contact target-section">
+                <div class="row contact-top">
+                    <div class="column lg-12">
+                        <h2 class="text-pretitle">Contact</h2>
+                        <p class="h1">Let's Connect</p>
+                    </div>
+                </div>
+
+                <div class="row contact-bottom">
+                    <div class="column lg-3 md-5 tab-6 stack-on-550">
+                        <p>
+                        <a href="mailto:tmalankar@gmail.com">tmalankar@gmail.com</a><br>
+                        <a href="tel:+17658060693">+1 765 806 0693</a>
+                        </p>
+                    </div>
+                    <div class="column lg-4 md-5 tab-6 stack-on-550">
+                        <div class="contact-links">
+                            <ul>
+                                <li><a href="www.linkedin.com/in/tushar-malankar" class="contact-link">LinkedIn</a></li>
+                                <li><a href="https://github.com/Tushar-Malankar-06" class="contact-link">GitHub</a></li>
+                                <li><a href="https://public.tableau.com/app/profile/tushar.malankar/vizzes" class="contact-link">Tableau</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column lg-4 md-12">
+                        <a href="mailto:tmalankar@gmail.com" class="btn btn--medium u-fullwidth contact-btn">Get In Touch</a>
+                    </div>
+                </div>
+
+            </section> <!-- end contact -->
+
+        </main> <!-- end s-content -->
+
+
+        <!-- ## footer
+        ================================================== -->
+        <footer class="s-footer">
+
+            <div class="row">
+                <div class="column ss-copyright">
+                    <span>© Copyright Tushar 2025</span> 
+                    <span>Design by <a href="https://www.styleshout.com/">StyleShout</a> Distribution By <a href="https://themewagon.com">Themewagon</a></span>
+                </div>
+
+                <div class="ss-go-top">
+                    <a class="smoothscroll" title="Back to Top" href="#top">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 2.206l-6.235 7.528-.765-.645 7.521-9 7.479 9-.764.646-6.236-7.53v21.884h-1v-21.883z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </footer> <!-- end s-footer -->
+
+    </div> <!-- end -s-pagewrap -->
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <!-- Add Swiper JS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize dynamic elements -->
+    <script>
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#d4af37"  // Gold color
+                },
+                "shape": {
+                    "type": ["circle", "triangle"],
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#d4af37",  // Gold color
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Initialize Typed.js
+        new Typed('#typed-text', {
+            strings: ['Tushar Malankar', 'an aspiring Data Engineer', 'a Problem Solver'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+
+        // Initialize Expertise Carousel
+        new Swiper('.expertise-carousel', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    </script>
+
+</body>
+</html>
